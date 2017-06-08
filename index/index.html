@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="countryApp">
+  <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css" >
+    <meta charset="utf-8">
+    <title>Country Data</title>
+  </head>
+  <body>
+    <div class="container" ng-controller="MyCtrl">
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Population</td>
+          </tr>
+          <tr>
+            <div class="input-group">
+              <span class = "input-group-addon glyphicon glyphicon-search">Filter</span>
+              <input type="text" ng-model="SearchCountry" class = "form-control">
+          </div>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr ng-repeat="country in CountryData |  filter:SearchCountry" ng-click="dshow=!dshow">
+            <td>
+              {{country.countryName}}
+               <div class="description" ng-show="dshow">
+                 <ul class="extraInfo">
+                  <li>Size in (km) : <span class="badge">{{country.size}}</span></li>
+                  <li>Total Gross Domestic Product (GDP) : <span class="badge">{{country.gdp_total}}</span></li>
+                  <li>Population density (per km) : <span class="badge">{{country.density}}</span></li>
+                 </ul>
+               </div>
+            </td>
+            <td>{{country.population}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="controller/controller.js"></script>
+  </body>
+</html>
